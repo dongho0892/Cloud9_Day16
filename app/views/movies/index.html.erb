@@ -1,0 +1,103 @@
+
+<h1 id="title">Movies</h1>
+<div id="title" class = "row">
+  <% @movies.each do |movie|%>
+    <div class="card col-md-3">
+      <img class="card-img-top" src="<%= movie.image_path.thumb.url %>" alt="<%= movie.image_path %>">
+      <div class="card-body">
+        <h5 class="card-title" data-id="3" aabbcc="ddeeff"><span><%= movie.title %></span></h5>
+        <p class="card-text">장르: <%= movie.genre %></p>
+        <p class="card-text">주연배우: <%= movie.actor %></p>
+        <p class="card-text">감독: <%= movie.director %></p>
+        <%= link_to "영화 정보보기", movie_path(movie) ,class: "btn btn-primary"%>
+      </div>
+    </div>
+  <% end %>
+</div>
+<br>
+
+<%= link_to 'New Movie', new_movie_path %>
+
+<br>
+
+<% if user_signed_in? %>
+  <!--로그인 된 상태-->
+  <%= current_user.email %>
+  <%= link_to "로그아웃", destroy_user_session_path, method: "delete"%>
+<% else %>
+  <!--로그인 안된 상태-->
+  <%= link_to "로그인", new_user_session_path %>
+<% end %>
+  
+<script>
+
+// var btn = document.getElementsByClassName("btn")[0];
+// var count = 0;
+// var msg = "안녕";
+// btn.onmouseover = function() {
+//     count += 1;
+//     // if (count >= 3) {
+//     msg = " 안녕은 그만! ";
+//     }
+//     alert(msg);
+// }   
+
+    // func2();
+    // var func1 = function() {     // func1 = 선언 되기 이전에는 사용이 불가능함!
+    //   alert("하이1~");
+    // }                  // 함수 표현식 : 선언 되기 이전에는 사용할 수 없다.
+    
+    
+    // func1();
+    // function func2() {        // function func2는 선언 되기 이전에 사용을 해도 사용이 됨.
+    //   alert("하이!2");
+    // }                  // 함수 선언식 : 선언되기 이전에도 사용할 수 있다.
+    
+    // var btn = document.getElementsByClassName("btn")[0];
+    // btn.addEventListener("mouseover", func2);
+    
+    // // JS에서 함수를 실행 할 때 괄호를 열고 닫음..
+    
+    // var btn2 = document.getElementsByClassName("btn")[1];
+    // btn2.onmouseover = func1;     // => 함수를 넣어주고자 하면 () 제외해야함.
+    // // btn2.onmouseover = func1();   => 함수가 실행이 됨.
+
+        // 화려한 무언가의 향연을 원할 것임..ㅋㅋㅋ
+        // 버튼에 마우스를 올리면           
+        //(요소)  (이벤트) (이벤트 리스너)  
+        // 관련 텍스트들이 갑자기 이상한 글자로 변해버렸다.
+        //       (요소)   (이벤트 핸들러)
+        
+        // var btn = document.getElementsByClassName("btn")[0];  // 요소를 찾음
+        // var text = document.getElementsByClassName("card-title")[0].innerText;
+        
+        // btn.addEventListener("mouseout", function() {   
+        //   var title = document.getElementsByClassName("card-title")[0];
+        //   console.dir(title);      
+        //   title.innerText = text;
+        // });
+        
+        
+        // // 익명함수           함수선언 / 함수표현 / 익명함수
+        // btn.addEventListener("mouseover", function() {   
+        //   var title = document.getElementsByClassName("card-title")[0];
+        //   console.dir(title);      // title은 2개를 물고 있어서 하나만 선택을 해야한다.
+        //   title.innerText = "Don't touch me";
+        // });
+
+
+// 버튼에 마우스를 올리면 해당 버튼의 class가 btn btn-danger로 변함.
+//(요소)  (이벤트 + 이벤트 리스너)           (이벤트 핸들러)
+
+var btn = document.getElementsByClassName("btn")[0];
+
+    // 이벤트 지정 + 이벤트 넣어주기.
+btn.addEventListener("mouseover", function() {
+  btn.setAttribute("class", "btn btn-danger disabled");
+});                                   // 버튼 동작을 안함.
+
+// btn.addEventListener("mouseout", function() {
+//   btn.setAttribute("class", "btn btn-primary");
+// });
+
+</script>
